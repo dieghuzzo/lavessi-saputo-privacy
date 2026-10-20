@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102B4C">
+  <title>L'avessi saputo - Scarica l'app</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #f7f4eb;
+      color: #102B4C;
+      font-family: -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      text-align: center;
+    }
+
+    main {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .bell {
+      font-size: 64px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 36px;
+      line-height: 1.05;
+      margin: 8px 0;
+      font-weight: 850;
+    }
+
+    .gold {
+      color: #BD922D;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .button {
+      display: block;
+      padding: 16px;
+      margin: 14px 0;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .apple {
+      background: #102B4C;
+      color: white;
+    }
+
+    .android {
+      background: #E8BD52;
+      color: #102B4C;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="bell">🔔</div>
+
+    <h1>L'AVESSI<br>SAPUTO</h1>
+    <p class="gold">Restare vicini è un gesto che vale.</p>
+
+    <p id="message">
+      La bacheca digitale dei manifesti funebri
+      in Valle d'Aosta.
+    </p>
+
+    <a class="button apple"
+       href="https://apps.apple.com/it/app/lavessi-saputo/id6807952890">
+       Scarica su App Store
+    </a>
+
+    <a class="button android"
+       id="androidButton"
+       href="#android">
+      ▶ Disponibile su Google Play
+    </a>
+
+    <p class="note" id="note">
+      Scegli il tuo dispositivo per scaricare l'app.
+    </p>
+  </main>
+
+  <script>
+    const appleUrl =
+      "https://apps.apple.com/it/app/lavessi-saputo/id6807952890";
+
+    // Inserisci qui il link Google Play quando sarà disponibile.
+    const androidUrl = "";
+
+    const ua = navigator.userAgent || "";
+    const isAndroid = /Android/i.test(ua);
+    const isApple = /iPhone|iPad|iPod/i.test(ua);
+
+    const androidButton =
+      document.getElementById("androidButton");
+    const message = document.getElementById("message");
+    const note = document.getElementById("note");
+
+    if (androidUrl) {
+      androidButton.href = androidUrl;
+    } else {
+      androidButton.href = "#android";
+      androidButton.textContent = "Android: presto disponibile";
+    }
+
+    if (isApple) {
+      window.location.replace(appleUrl);
+    } else if (isAndroid && androidUrl) {
+      window.location.replace(androidUrl);
+    } else if (isAndroid) {
+      message.textContent =
+        "Stiamo preparando la versione Android. " +
+        "Torna presto per scaricare L'avessi saputo.";
+      androidButton.style.display = "block";
+      note.textContent = "L'app Android è in preparazione.";
+    } else {
+      note.textContent =
+        "Seleziona il tuo dispositivo per continuare.";
+    }
+  </script>
+</body>
+</html>

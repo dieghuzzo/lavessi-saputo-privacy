@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#102B4C">
+  <meta name="description" content="L'avessi saputo — bacheca digitale dei manifesti funebri in Valle d'Aosta. Scarica l'app su App Store e Google Play.">
   <title>L'avessi saputo - Scarica l'app</title>
 
   <style>
@@ -91,18 +92,19 @@
     </p>
 
     <a class="button apple"
+       id="appleButton"
        href="https://apps.apple.com/it/app/lavessi-saputo/id6807952890">
        Scarica su App Store
     </a>
 
     <a class="button android"
        id="androidButton"
-       href="#android">
-      ▶ Disponibile su Google Play
+       href="https://play.google.com/store/apps/details?id=com.diego.lavessisaputo">
+      ▶ Scarica su Google Play
     </a>
 
     <p class="note" id="note">
-      Scegli il tuo dispositivo per scaricare l'app.
+      Disponibile su App Store e Google Play.
     </p>
 
     <p class="note" style="margin-top: 28px;">
@@ -115,39 +117,23 @@
   <script>
     const appleUrl =
       "https://apps.apple.com/it/app/lavessi-saputo/id6807952890";
-
-    // Inserisci qui il link Google Play quando sarà disponibile.
-    const androidUrl = "https://play.google.com/store/apps/details?id=com.diego.lavessisaputo";
+    const androidUrl =
+      "https://play.google.com/store/apps/details?id=com.diego.lavessisaputo";
 
     const ua = navigator.userAgent || "";
     const isAndroid = /Android/i.test(ua);
     const isApple = /iPhone|iPad|iPod/i.test(ua);
 
-    const androidButton =
-      document.getElementById("androidButton");
-    const message = document.getElementById("message");
     const note = document.getElementById("note");
 
-    if (androidUrl) {
-      androidButton.href = androidUrl;
-    } else {
-      androidButton.href = "#android";
-      androidButton.textContent = "Android: presto disponibile";
-    }
-
+    // Da QR / mobile: vai diretto allo store corretto.
     if (isApple) {
       window.location.replace(appleUrl);
-    } else if (isAndroid && androidUrl) {
-      window.location.replace(androidUrl);
     } else if (isAndroid) {
-      message.textContent =
-        "Stiamo preparando la versione Android. " +
-        "Torna presto per scaricare L'avessi saputo.";
-      androidButton.style.display = "block";
-      note.textContent = "L'app Android è in preparazione.";
+      window.location.replace(androidUrl);
     } else {
       note.textContent =
-        "Seleziona il tuo dispositivo per continuare.";
+        "Scegli il tuo store, oppure apri il link dal telefono.";
     }
   </script>
 </body>
